@@ -31,7 +31,6 @@ namespace Handlers
                     break;
                 }
             }
-
             return bankAccount;
         }
 
@@ -40,6 +39,5 @@ namespace Handlers
         {
             return bankAccounts;
         }
-
     }
 }
