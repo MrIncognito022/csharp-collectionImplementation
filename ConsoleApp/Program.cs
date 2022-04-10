@@ -14,8 +14,8 @@ namespace ConsoleApp
             
             //IBankAccountHandler bankAccountHandler = new BankAccountHandler(100);
 
-            string title,accountType,code;
-
+            string title,accountType,code,toCode;
+            decimal amount;
             bool choice = true;
             do
             {
@@ -25,6 +25,7 @@ namespace ConsoleApp
                 Console.WriteLine("\t2...................Search an Existing Account ...............");
                 Console.WriteLine("\t3...................Deposit amount into the account...........");
                 Console.WriteLine("\t4...................Withdraw amount from account..............");
+                Console.WriteLine("\t5...................Transfer amount to other account");
                 string? option = Console.ReadLine();
                 switch (option)
                 {
@@ -73,10 +74,13 @@ namespace ConsoleApp
                             Console.WriteLine("Enter the account number");
                             code = Console.ReadLine().Trim();
                             Console.WriteLine("Enter the amount to deposit");
-                            decimal amount = decimal.Parse(Console.ReadLine());
+                            amount = decimal.Parse(Console.ReadLine());
                             BankAccount bankAccount = bankAccountHandler.GetBankAccount(code);
-                            bankAccount.PayIn(amount);
-                            Console.WriteLine("Amount deposit successfully");
+
+                            if (bankAccount.PayIn(amount) == true)
+                            {
+                                Console.WriteLine("Amount deposit successfully");
+                            }
                             Console.WriteLine("Press any key to continue");
                             Console.ReadKey();
                             
@@ -88,7 +92,7 @@ namespace ConsoleApp
                             Console.WriteLine("Enter the account number");
                             code = Console.ReadLine().Trim();
                             Console.WriteLine("Enter the amount to Withdraw");
-                            decimal amount = decimal.Parse(Console.ReadLine());
+                            amount = decimal.Parse(Console.ReadLine());
                             BankAccount bankAccount = bankAccountHandler.GetBankAccount(code);
                             bankAccount.WithDraw(amount);
                             Console.WriteLine("Amount Withdraw successfully");
@@ -97,6 +101,38 @@ namespace ConsoleApp
 
                         }
                         break;
+                    case "5":
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enter  from Transfer account number");
+                            code = Console.ReadLine().Trim();
+                            BankAccount fromBankAccount = bankAccountHandler.GetBankAccount(code);
+                            Console.WriteLine("Enter to Transfer account number");
+                            toCode = Console.ReadLine().Trim();
+                            BankAccount toBankAccount = bankAccountHandler.GetBankAccount(toCode);
+                            Console.WriteLine("Enter amount to transfer");
+                            amount = decimal.Parse(Console.ReadLine());
+                            if (fromBankAccount.Transfer(toBankAccount, amount)== true)
+                            {
+                                Console.WriteLine("Amount transfer successfully");
+                                Console.WriteLine("Enter any Key");
+                                Console.ReadKey();
+                            }
+                        }
+                        break;
+                        case "6":
+                        {
+                            Console.Clear();
+                            BankAccount[] bankAccounts = bankAccountHandler.GetBankAccounts();
+                            foreach(BankAccount bankAccount in bankAccounts)
+                            {
+                                Console.WriteLine(bankAccount.ToString());
+                            }
+                            Console.WriteLine("Press Any Key");
+                            Console.ReadLine();
+                        }
+
+                        break ;
                     default:
                         choice = false;
                         break;

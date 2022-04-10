@@ -2,7 +2,7 @@
 {
     public abstract class BankAccount
     {
-        private static int index = 1000;
+        private static int index = 1;
         public static int Total = 0;
         public BankAccount()
         {
@@ -77,7 +77,10 @@
             Balance += amount;
             return true;
         }
-
+        public virtual bool Transfer(BankAccount bankAccount, decimal amount)
+        {
+            return false;
+        }
         public override string ToString()
         {
             return $"Title: {Title} " +

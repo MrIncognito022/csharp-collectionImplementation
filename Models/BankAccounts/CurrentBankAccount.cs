@@ -21,5 +21,12 @@ namespace Models
 
             return base.WithDraw(amount);
         }
+        public override bool Transfer(BankAccount bankAccount, decimal amount)
+        {
+            Console.WriteLine("Can't Transfer amount from current Account");
+            Console.WriteLine("Press any Key");
+            Console.ReadLine();
+            return false;
+        }
     }
 }

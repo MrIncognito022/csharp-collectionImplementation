@@ -20,7 +20,7 @@ namespace Models
         // a.Transfer(b, 1000);
 
 
-        public bool Transfer(BankAccount bankAccount, decimal amount)
+        public override bool Transfer(BankAccount bankAccount, decimal amount)
         {
             //TODO:How many Bank account objects ???
             SavingBankAccount? temp = bankAccount as SavingBankAccount;
@@ -30,7 +30,7 @@ namespace Models
                 return false;
             }
 
-            if (!WithDraw(amount))
+            if (!this.WithDraw(amount))
             {
                 return false;
             }
