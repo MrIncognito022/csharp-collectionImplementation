@@ -25,7 +25,9 @@ namespace ConsoleApp
                 Console.WriteLine("\t2...................Search an Existing Account ...............");
                 Console.WriteLine("\t3...................Deposit amount into the account...........");
                 Console.WriteLine("\t4...................Withdraw amount from account..............");
-                Console.WriteLine("\t5...................Transfer amount to other account");
+                Console.WriteLine("\t5...................Transfer amount to other account..........");
+                Console.WriteLine("\t6...................Display All Account details...............");
+
                 string? option = Console.ReadLine();
                 switch (option)
                 {
